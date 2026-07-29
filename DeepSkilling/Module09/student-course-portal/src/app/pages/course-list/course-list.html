@@ -1,5 +1,40 @@
-<div class="page-container">
-  <h1>Course List</h1>
+<div class="course-page">
 
-  <p>Browse available courses and enroll in the courses you are interested in.</p>
+  <h1>Available Courses</h1>
+
+  <p class="intro">
+    Browse the available courses and enroll in the courses you are interested in.
+  </p>
+
+  <div class="course-grid">
+
+    <div
+      class="course-card"
+      *ngFor="let course of courses">
+
+      <h2>{{ course.name }}</h2>
+
+      <p>
+        <strong>Instructor:</strong>
+        {{ course.instructor }}
+      </p>
+
+      <p>
+        <strong>Duration:</strong>
+        {{ course.duration }}
+      </p>
+
+      <button
+        type="button"
+        [disabled]="course.enrolled"
+        (click)="enrollCourse(course)">
+
+        {{ course.enrolled ? 'Enrolled' : 'Enroll Now' }}
+
+      </button>
+
+    </div>
+
+  </div>
+
 </div>

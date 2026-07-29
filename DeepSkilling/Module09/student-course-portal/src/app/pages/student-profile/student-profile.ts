@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-student-profile',
@@ -8,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class StudentProfileComponent {
 
+  @Input() studentName: string = '';
+
+  @Output() profileUpdated = new EventEmitter<string>();
+
+  updateProfile(): void {
+    const name = this.studentName.trim() || 'Student';
+
+    this.profileUpdated.emit(
+      `${name} profile updated successfully!`
+    );
+  }
 }

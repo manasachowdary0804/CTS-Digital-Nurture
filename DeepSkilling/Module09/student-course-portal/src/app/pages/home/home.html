@@ -1,10 +1,9 @@
 <div class="home-container">
 
-  <h1>Welcome to Student Course Portal</h1>
+  <h1>{{ title }}</h1>
 
-  <p>
-    Manage your courses, enrollment, academic profile,
-    and grades from one place.
+  <p class="welcome-message">
+    {{ message }}
   </p>
 
   <div class="stats-row">
@@ -15,15 +14,61 @@
     </div>
 
     <div class="stat-card">
-      <h3>Enrolled</h3>
+      <h3>Enrolled Courses</h3>
       <p>3</p>
     </div>
 
     <div class="stat-card">
-      <h3>GPA</h3>
+      <h3>Current GPA</h3>
       <p>3.8</p>
     </div>
 
   </div>
+
+  <div class="portal-status">
+
+    <h2>Portal Status</h2>
+
+    <p [class.active]="isPortalActive">
+      {{ isPortalActive ? 'Portal is Active' : 'Portal is Inactive' }}
+    </p>
+
+    <button type="button" (click)="togglePortal()">
+      {{ isPortalActive ? 'Deactivate Portal' : 'Activate Portal' }}
+    </button>
+
+  </div>
+
+  <div class="student-input">
+
+    <h2>Student Information</h2>
+
+    <label for="studentName">
+      Enter your name:
+    </label>
+
+    <input
+      id="studentName"
+      type="text"
+      [(ngModel)]="studentName"
+      placeholder="Enter your name"
+    >
+
+    <p *ngIf="studentName">
+      Welcome, {{ studentName }}!
+    </p>
+
+  </div>
+
+  <app-student-profile
+    [studentName]="studentName"
+    (profileUpdated)="onProfileMessage($event)">
+  </app-student-profile>
+
+  <p
+    class="profile-message"
+    *ngIf="profileMessage">
+    {{ profileMessage }}
+  </p>
 
 </div>

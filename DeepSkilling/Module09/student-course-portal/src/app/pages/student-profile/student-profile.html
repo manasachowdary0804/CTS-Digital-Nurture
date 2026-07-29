@@ -1,5 +1,37 @@
-<div class="page-container">
+<div class="profile-container">
+
   <h1>Student Profile</h1>
 
-  <p>View and manage your student profile information.</p>
+  <div class="profile-card">
+
+    <h2>Student Information</h2>
+
+    <p>
+      <strong>Name:</strong>
+      {{ studentName || 'No name provided' }}
+    </p>
+
+    <p>
+      <strong>Course:</strong>
+      B.Tech Computer Science
+    </p>
+
+    <p>
+      <strong>Year:</strong>
+      Final Year
+    </p>
+
+    <p>
+      <strong>University:</strong>
+      Vignan University
+    </p>
+
+    <button
+      type="button"
+      (click)="updateProfile()">
+      Update Profile
+    </button>
+
+  </div>
+
 </div>
