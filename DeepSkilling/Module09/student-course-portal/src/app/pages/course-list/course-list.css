@@ -1,0 +1,13 @@
+.page-container {
+  padding: 40px;
+  text-align: center;
+}
+
+.page-container h1 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.page-container p {
+  font-size: 18px;
+}
