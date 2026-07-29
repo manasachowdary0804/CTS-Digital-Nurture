@@ -6,6 +6,15 @@
     Browse the available courses and enroll in the courses you are interested in.
   </p>
 
+  <div class="category-display">
+
+    <strong>Selected Category:</strong>
+
+    {{ selectedCategory }}
+
+  </div>
+
+
   <div class="course-grid">
 
     <div
@@ -13,7 +22,9 @@
       *ngFor="let course of courses"
       appHighlight="yellow">
 
-      <h2>{{ course.name }}</h2>
+      <h2>
+        {{ course.name }}
+      </h2>
 
       <p>
         <strong>Instructor:</strong>
@@ -30,22 +41,77 @@
         {{ course.credits | creditLabel }}
       </p>
 
+      <p>
+        <strong>Status:</strong>
+
+        <span *ngIf="isEnrolled(course)">
+          Enrolled
+        </span>
+
+        <span *ngIf="!isEnrolled(course)">
+          Not Enrolled
+        </span>
+
+      </p>
+
       <button
+        *ngIf="!isEnrolled(course)"
         type="button"
-        [disabled]="course.enrolled"
         (click)="enrollCourse(course)">
 
-        {{ course.enrolled ? 'Enrolled' : 'Enroll Now' }}
+        Enroll Now
 
       </button>
+
+      <button
+        *ngIf="isEnrolled(course)"
+        type="button"
+        (click)="unenrollCourse(course)">
+
+        Unenroll
+
+      </button>
+
+      <a
+        [routerLink]="['/courses', course.id]"
+        class="details-button">
+
+        View Details
+
+      </a>
 
     </div>
 
   </div>
 
+
+  <div
+    class="enrolled-section"
+    *ngIf="enrolledCourses.length > 0">
+
+    <h2>
+      My Enrolled Courses
+    </h2>
+
+    <ul>
+
+      <li
+        *ngFor="let course of enrolledCourses">
+
+        {{ course.name }}
+
+      </li>
+
+    </ul>
+
+  </div>
+
+
   <div class="custom-highlight-demo">
 
-    <h2>Configurable Highlight Demo</h2>
+    <h2>
+      Configurable Highlight Demo
+    </h2>
 
     <div
       class="demo-card"

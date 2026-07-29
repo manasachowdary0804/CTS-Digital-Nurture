@@ -1,14 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Course } from '../models/course.model';
 import { LoggerService } from './logger';
-
-export interface Course {
-  id: number;
-  name: string;
-  instructor: string;
-  duration: string;
-  credits: number | null;
-  enrolled: boolean;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -55,32 +47,23 @@ export class CourseService {
   ) {}
 
   getCourses(): Course[] {
-
     this.logger.log('Fetching all available courses');
-
     return this.courses;
   }
 
-  enrollCourse(courseId: number): void {
+  getCourseById(id: number): Course | undefined {
+    this.logger.log(`Fetching course with ID: ${id}`);
 
-    const course = this.courses.find(
-      course => course.id === courseId
+    return this.courses.find(
+      course => course.id === id
     );
+  }
 
-    if (course) {
+  addCourse(course: Course): void {
+    this.courses.push(course);
 
-      course.enrolled = true;
-
-      this.logger.log(
-        `Student enrolled in course: ${course.name}`
-      );
-
-    } else {
-
-      this.logger.error(
-        `Course with ID ${courseId} was not found`
-      );
-
-    }
+    this.logger.log(
+      `Course added successfully: ${course.name}`
+    );
   }
 }

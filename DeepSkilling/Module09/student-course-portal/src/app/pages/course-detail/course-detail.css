@@ -1,0 +1,45 @@
+.course-detail {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+}
+
+.course-detail h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.detail-card {
+  padding: 30px;
+  background-color: #f3f4f6;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.detail-card p {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.detail-card p:last-child {
+  border-bottom: none;
+}
+
+.back-button {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 10px 20px;
+  background-color: #2563eb;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.not-found {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.not-found h1 {
+  color: #dc2626;
+}

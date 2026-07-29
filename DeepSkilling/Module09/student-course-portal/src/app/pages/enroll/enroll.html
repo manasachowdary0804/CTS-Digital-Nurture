@@ -1,0 +1,203 @@
+<div class="enroll-container">
+
+  <h1>Enrollment Request</h1>
+
+  <p class="intro">
+    Submit your request to enroll in a course.
+  </p>
+
+  <form
+    #enrollmentForm="ngForm"
+    (ngSubmit)="onSubmit(enrollmentForm)"
+    novalidate>
+
+    <!-- Student Name -->
+    <div class="form-group">
+
+      <label for="studentName">
+        Student Name *
+      </label>
+
+      <input
+        id="studentName"
+        type="text"
+        name="studentName"
+        [(ngModel)]="enrollment.studentName"
+        #studentName="ngModel"
+        required
+        minlength="3"
+        placeholder="Enter your full name">
+
+      <div
+        class="error"
+        *ngIf="
+          studentName.invalid &&
+          (studentName.touched || enrollmentForm.submitted)
+        ">
+
+        <span *ngIf="studentName.errors?.['required']">
+          Student name is required.
+        </span>
+
+        <span *ngIf="studentName.errors?.['minlength']">
+          Student name must contain at least 3 characters.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- Email -->
+    <div class="form-group">
+
+      <label for="email">
+        Email *
+      </label>
+
+      <input
+        id="email"
+        type="email"
+        name="email"
+        [(ngModel)]="enrollment.email"
+        #email="ngModel"
+        required
+        email
+        placeholder="Enter your email">
+
+      <div
+        class="error"
+        *ngIf="
+          email.invalid &&
+          (email.touched || enrollmentForm.submitted)
+        ">
+
+        <span *ngIf="email.errors?.['required']">
+          Email is required.
+        </span>
+
+        <span *ngIf="email.errors?.['email']">
+          Please enter a valid email address.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- Course -->
+    <div class="form-group">
+
+      <label for="course">
+        Select Course *
+      </label>
+
+      <select
+        id="course"
+        name="course"
+        [(ngModel)]="enrollment.course"
+        #course="ngModel"
+        required>
+
+        <option
+          value=""
+          disabled>
+          Select a course
+        </option>
+
+        <option
+          *ngFor="let courseName of courses"
+          [value]="courseName">
+
+          {{ courseName }}
+
+        </option>
+
+      </select>
+
+      <div
+        class="error"
+        *ngIf="
+          course.invalid &&
+          (course.touched || enrollmentForm.submitted)
+        ">
+
+        Course selection is required.
+
+      </div>
+
+    </div>
+
+
+    <!-- Start Date -->
+    <div class="form-group">
+
+      <label for="startDate">
+        Preferred Start Date *
+      </label>
+
+      <input
+        id="startDate"
+        type="date"
+        name="startDate"
+        [(ngModel)]="enrollment.startDate"
+        #startDate="ngModel"
+        required>
+
+      <div
+        class="error"
+        *ngIf="
+          startDate.invalid &&
+          (startDate.touched || enrollmentForm.submitted)
+        ">
+
+        Preferred start date is required.
+
+      </div>
+
+    </div>
+
+
+    <!-- Comments -->
+    <div class="form-group">
+
+      <label for="comments">
+        Comments
+      </label>
+
+      <textarea
+        id="comments"
+        name="comments"
+        [(ngModel)]="enrollment.comments"
+        rows="4"
+        placeholder="Enter any additional comments">
+      </textarea>
+
+    </div>
+
+
+    <!-- Submit -->
+    <button
+      type="submit">
+
+      Submit Enrollment Request
+
+    </button>
+
+  </form>
+
+
+  <!-- Success Message -->
+  <div
+    class="success-message"
+    *ngIf="submitted">
+
+    <h2>Enrollment Request Submitted!</h2>
+
+    <p>
+      Your enrollment request has been submitted successfully.
+    </p>
+
+  </div>
+
+</div>
