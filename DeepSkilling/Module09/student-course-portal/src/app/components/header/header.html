@@ -1,23 +1,36 @@
-<nav class="navbar">
+<header class="header">
 
   <div class="logo">
     Student Course Portal
   </div>
 
-  <div class="nav-links">
+  <nav class="navigation">
 
-    <a routerLink="/">
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">
       Home
     </a>
 
-    <a routerLink="/courses">
+    <a
+      routerLink="/courses"
+      routerLinkActive="active">
       Courses
     </a>
 
-    <a routerLink="/profile">
-      Profile
+    <a
+      routerLink="/profile"
+      routerLinkActive="active">
+      Student Profile
     </a>
 
-  </div>
+    <a
+      routerLink="/registration"
+      routerLinkActive="active">
+      Registration
+    </a>
 
-</nav>
+  </nav>
+
+</header>

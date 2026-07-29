@@ -1,0 +1,204 @@
+<div class="registration-container">
+
+  <h1>Student Registration</h1>
+
+  <p class="intro">
+    Create your student account by filling in the details below.
+  </p>
+
+  <form
+    [formGroup]="registrationForm"
+    (ngSubmit)="onSubmit()"
+    novalidate>
+
+    <!-- Student Name -->
+    <div class="form-group">
+
+      <label for="studentName">
+        Student Name *
+      </label>
+
+      <input
+        id="studentName"
+        type="text"
+        formControlName="studentName"
+        placeholder="Enter your full name">
+
+      <div
+        class="error"
+        *ngIf="
+          studentName?.invalid &&
+          (studentName?.dirty ||
+          studentName?.touched ||
+          submitted)
+        ">
+
+        <span *ngIf="studentName?.errors?.['required']">
+          Student name is required.
+        </span>
+
+        <span *ngIf="studentName?.errors?.['minlength']">
+          Student name must contain at least 3 characters.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- Email -->
+    <div class="form-group">
+
+      <label for="email">
+        Email *
+      </label>
+
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="Enter your email">
+
+      <div
+        class="error"
+        *ngIf="
+          email?.invalid &&
+          (email?.dirty ||
+          email?.touched ||
+          submitted)
+        ">
+
+        <span *ngIf="email?.errors?.['required']">
+          Email is required.
+        </span>
+
+        <span *ngIf="email?.errors?.['email']">
+          Please enter a valid email address.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- Password -->
+    <div class="form-group">
+
+      <label for="password">
+        Password *
+      </label>
+
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        placeholder="Enter your password">
+
+      <!-- Password Strength -->
+      <div
+        class="password-strength"
+        *ngIf="password?.value">
+
+        Password Strength:
+        <strong>{{ passwordStrength }}</strong>
+
+      </div>
+
+      <div
+        class="error"
+        *ngIf="
+          password?.invalid &&
+          (password?.dirty ||
+          password?.touched ||
+          submitted)
+        ">
+
+        <span *ngIf="password?.errors?.['required']">
+          Password is required.
+        </span>
+
+        <span *ngIf="password?.errors?.['minlength']">
+          Password must contain at least 8 characters.
+        </span>
+
+        <span *ngIf="password?.errors?.['passwordStrength']">
+          Password must contain at least one uppercase letter,
+          one lowercase letter, one number, and one special character.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- Confirm Password -->
+    <div class="form-group">
+
+      <label for="confirmPassword">
+        Confirm Password *
+      </label>
+
+      <input
+        id="confirmPassword"
+        type="password"
+        formControlName="confirmPassword"
+        placeholder="Re-enter your password">
+
+      <div
+        class="error"
+        *ngIf="
+          confirmPassword?.invalid &&
+          (confirmPassword?.dirty ||
+          confirmPassword?.touched ||
+          submitted)
+        ">
+
+        <span *ngIf="confirmPassword?.errors?.['required']">
+          Confirm password is required.
+        </span>
+
+      </div>
+
+      <!-- Password Mismatch -->
+      <div
+        class="error"
+        *ngIf="
+          registrationForm.errors?.['passwordsMismatch'] &&
+          confirmPassword?.value &&
+          (confirmPassword?.dirty ||
+          confirmPassword?.touched ||
+          submitted)
+        ">
+
+        Passwords do not match.
+
+      </div>
+
+    </div>
+
+
+    <!-- Submit Button -->
+    <button
+      type="submit">
+
+      Register
+
+    </button>
+
+  </form>
+
+
+  <!-- Success Message -->
+  <div
+    class="success-message"
+    *ngIf="submitted && registrationForm.valid">
+
+    <h2>Registration Successful!</h2>
+
+    <p>
+      Your student account has been created successfully.
+    </p>
+
+  </div>
+
+</div>

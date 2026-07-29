@@ -27,6 +27,7 @@
   background-color: #f3f4f6;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: left;
+  transition: background-color 0.2s ease;
 }
 
 .course-card h2 {
@@ -51,4 +52,28 @@
 .course-card button:disabled {
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+.custom-highlight-demo {
+  margin-top: 50px;
+}
+
+.custom-highlight-demo h2 {
+  margin-bottom: 20px;
+}
+
+.demo-card {
+  width: 400px;
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 25px;
+  border-radius: 10px;
+  background-color: #f3f4f6;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.demo-card p {
+  margin: 0;
+  font-size: 16px;
 }

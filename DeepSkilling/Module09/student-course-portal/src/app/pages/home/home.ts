@@ -5,7 +5,11 @@ import { StudentProfileComponent } from '../student-profile/student-profile';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, FormsModule, StudentProfileComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    StudentProfileComponent
+  ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

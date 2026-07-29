@@ -1,36 +1,219 @@
 <div class="profile-container">
 
-  <h1>Student Profile</h1>
+  <!-- Student Profile Section -->
+  <div class="student-profile-section">
 
-  <div class="profile-card">
+    <h1>Student Profile</h1>
 
-    <h2>Student Information</h2>
+    <div class="profile-card">
 
-    <p>
-      <strong>Name:</strong>
-      {{ studentName || 'No name provided' }}
+      <h2>Student Information</h2>
+
+      <p>
+        <strong>Name:</strong>
+        {{ studentName || 'No name provided' }}
+      </p>
+
+      <p>
+        <strong>Course:</strong>
+        B.Tech Computer Science
+      </p>
+
+      <p>
+        <strong>Year:</strong>
+        Final Year
+      </p>
+
+      <p>
+        <strong>University:</strong>
+        Vignan University
+      </p>
+
+      <button
+        type="button"
+        (click)="updateProfile()">
+
+        Update Profile
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Enrollment Request Form -->
+  <div class="enrollment-section">
+
+    <h1>Enrollment Request</h1>
+
+    <p class="intro">
+      Fill in the form below to request enrollment in a course.
     </p>
 
-    <p>
-      <strong>Course:</strong>
-      B.Tech Computer Science
-    </p>
+    <form
+      #enrollmentForm="ngForm"
+      (ngSubmit)="onSubmit(enrollmentForm)"
+      novalidate>
 
-    <p>
-      <strong>Year:</strong>
-      Final Year
-    </p>
+      <!-- Student Name -->
 
-    <p>
-      <strong>University:</strong>
-      Vignan University
-    </p>
+      <div class="form-group">
 
-    <button
-      type="button"
-      (click)="updateProfile()">
-      Update Profile
-    </button>
+        <label for="enrollmentStudentName">
+          Student Name *
+        </label>
+
+        <input
+          id="enrollmentStudentName"
+          type="text"
+          name="enrollmentStudentName"
+          ngModel
+          required
+          #enrollmentStudentName="ngModel"
+          placeholder="Enter your full name">
+
+        <div
+          class="error"
+          *ngIf="
+            enrollmentStudentName.invalid &&
+            (enrollmentStudentName.dirty ||
+            enrollmentStudentName.touched)
+          ">
+
+          Student name is required.
+
+        </div>
+
+      </div>
+
+
+      <!-- Email -->
+
+      <div class="form-group">
+
+        <label for="email">
+          Email *
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          name="email"
+          ngModel
+          required
+          email
+          #email="ngModel"
+          placeholder="Enter your email">
+
+        <div
+          class="error"
+          *ngIf="
+            email.invalid &&
+            (email.dirty || email.touched)
+          ">
+
+          <span *ngIf="email.errors?.['required']">
+            Email is required.
+          </span>
+
+          <span *ngIf="email.errors?.['email']">
+            Please enter a valid email address.
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Course -->
+
+      <div class="form-group">
+
+        <label for="course">
+          Select Course *
+        </label>
+
+        <select
+          id="course"
+          name="course"
+          ngModel
+          required
+          #course="ngModel">
+
+          <option value="">
+            -- Select a Course --
+          </option>
+
+          <option
+            *ngFor="let courseName of courses"
+            [value]="courseName">
+
+            {{ courseName }}
+
+          </option>
+
+        </select>
+
+        <div
+          class="error"
+          *ngIf="
+            course.invalid &&
+            (course.dirty || course.touched)
+          ">
+
+          Please select a course.
+
+        </div>
+
+      </div>
+
+
+      <!-- Comments -->
+
+      <div class="form-group">
+
+        <label for="comments">
+          Comments
+        </label>
+
+        <textarea
+          id="comments"
+          name="comments"
+          ngModel
+          rows="4"
+          placeholder="Enter any additional comments (optional)">
+        </textarea>
+
+      </div>
+
+
+      <!-- Submit -->
+
+      <button
+        type="submit"
+        [disabled]="enrollmentForm.invalid">
+
+        Submit Enrollment Request
+
+      </button>
+
+    </form>
+
+
+    <!-- Success Message -->
+
+    <div
+      class="success-message"
+      *ngIf="submitted">
+
+      <h2>Enrollment Request Submitted!</h2>
+
+      <p>
+        Your enrollment request has been submitted successfully.
+      </p>
+
+    </div>
 
   </div>
 

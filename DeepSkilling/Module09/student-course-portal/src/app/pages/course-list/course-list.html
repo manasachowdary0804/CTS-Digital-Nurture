@@ -10,7 +10,8 @@
 
     <div
       class="course-card"
-      *ngFor="let course of courses">
+      *ngFor="let course of courses"
+      appHighlight="yellow">
 
       <h2>{{ course.name }}</h2>
 
@@ -24,6 +25,11 @@
         {{ course.duration }}
       </p>
 
+      <p>
+        <strong>Credits:</strong>
+        {{ course.credits | creditLabel }}
+      </p>
+
       <button
         type="button"
         [disabled]="course.enrolled"
@@ -32,6 +38,22 @@
         {{ course.enrolled ? 'Enrolled' : 'Enroll Now' }}
 
       </button>
+
+    </div>
+
+  </div>
+
+  <div class="custom-highlight-demo">
+
+    <h2>Configurable Highlight Demo</h2>
+
+    <div
+      class="demo-card"
+      appHighlight="lightblue">
+
+      <p>
+        Hover over this card to see the custom light blue highlight.
+      </p>
 
     </div>
 
